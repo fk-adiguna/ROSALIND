@@ -1,3 +1,5 @@
+import random
+
 Nucleotides = ['A', 'C', 'G', 'T']
 
 # Checks sequence to make sure it is a DNA string
@@ -7,4 +9,8 @@ def validate_sequence(dna_sequence):
         if nucleotide not in Nucleotides:
             return False
     return standard_sequence
+
+def generate_random_dna_sequence(length):
+    sequence = ''.join([random.choice(Nucleotides) for i in range(length + 1)])
+    return sequence
 
