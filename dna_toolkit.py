@@ -20,24 +20,17 @@ def generate_random_dna_sequence(length):
     sequence = ''.join([random.choice(NUCLEOTIDES) for i in range(length + 1)])
     return sequence
 
-def get_most_recent_file():
+def get_most_recent_test_file(path):
     global most_recent_time
     global most_recent_file
-    for entry in os.scandir(TEST_CASES_PATH):
-        print('entry name: ', entry.name, '\nlast modified time: ', entry.stat().st_mtime_ns)
+    for entry in os.scandir(path):
         if not entry.is_file(): return
         modified_time = entry.stat().st_mtime_ns
         if modified_time > most_recent_time:
             most_recent_time = modified_time
             most_recent_file = entry.name
-            return entry
+            
+    return most_recent_file
 
-def f():
-    for entry in os.scandir(TEST_CASES_PATH):
-        print('entry name: ', entry.name, '\nlast modified time: ', entry.stat().st_mtime_ns)
-
-f()
-# for entry in os.scandir('test_cases'):
-#     print('entry name: ', entry.name, '\nlast modified time: ', entry.stat().st_mtime_ns)
-
-get_most_recent_file()
+def test_function(func):
+    print(func(open(f'test_cases/{get_most_recent_test_file(TEST_CASES_PATH)}', 'r').readline().strip()))
