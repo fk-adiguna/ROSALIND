@@ -33,4 +33,7 @@ def get_most_recent_test_file(path):
     return most_recent_file
 
 def test_function(func):
-    print(func(open(f'test_cases/{get_most_recent_test_file(TEST_CASES_PATH)}', 'r').readline().strip()))
+    answer_file = open('answer.txt', 'w')
+    answer = func(open(f'test_cases/{get_most_recent_test_file(TEST_CASES_PATH)}', 'r').readline().strip())
+    
+    answer_file.write(answer)
