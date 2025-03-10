@@ -31,4 +31,13 @@ def get_most_recent_file():
             most_recent_time = modified_time
             most_recent_file = entry.name
             return entry
-        
+
+def f():
+    for entry in os.scandir(TEST_CASES_PATH):
+        print('entry name: ', entry.name, '\nlast modified time: ', entry.stat().st_mtime_ns)
+
+f()
+# for entry in os.scandir('test_cases'):
+#     print('entry name: ', entry.name, '\nlast modified time: ', entry.stat().st_mtime_ns)
+
+get_most_recent_file()
