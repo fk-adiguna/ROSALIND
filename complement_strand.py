@@ -7,4 +7,6 @@ def reverse_complement(sequence):
     sequence_complement.reverse()
     return ''.join(sequence_complement)
 
-print(reverse_complement(test_sequence))
+# test_file = open(get_most_recent_file().name, 'r')
+print(get_most_recent_file().name)
+# print(reverse_complement(test_file.readline()))
