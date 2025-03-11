@@ -43,6 +43,15 @@ def test_function(func):
 def gc_content(sequence: str ):
     return str((sequence.count('C') + sequence.count('G')) * 100/len(sequence))
 
+def subsection_gc_content(sequence : str, length : int = 20):
+    subsection_gc = []
+
+    for nucleotide_index in range(0, len(sequence), length):
+        gc = gc_content(sequence[nucleotide_index : nucleotide_index + length])
+        subsection_gc.append(f'{gc}%')
+
+    return subsection_gc
+
 def reverse_complement(sequence):
     sequence_complement = [COMPLEMENT_NUCLEOTIDES[nucleotide] for nucleotide in sequence]
     sequence_complement.reverse()
