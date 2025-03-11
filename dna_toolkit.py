@@ -34,6 +34,12 @@ def get_most_recent_test_file(path):
             
     return most_recent_file
 
+def read_file(pathway : str):
+
+    with open(pathway, 'r') as file:
+        return [line.strip() for line in file.readlines()]
+
+
 def test_function(func):
     answer_file = open('answer.txt', 'w')
     answer = func(open(f'test_cases/{get_most_recent_test_file(TEST_CASES_PATH)}', 'r').readline().strip())
@@ -41,7 +47,7 @@ def test_function(func):
     answer_file.write(answer)
 
 def gc_content(sequence: str ):
-    return str((sequence.count('C') + sequence.count('G')) * 100/len(sequence))
+    return (sequence.count('C') + sequence.count('G')) * 100/len(sequence)
 
 def subsection_gc_content(sequence : str, length : int = 20):
     subsection_gc = []

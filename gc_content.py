@@ -1,6 +1,31 @@
 from dna_toolkit import *
 
-def gc_content(sequence: str ):
-    return str((sequence.count('C') + sequence.count('G')) * 100/len(sequence))
+FASTA_file = read_file('test_data/gc_content.txt')
+
+def FASTA_sort(unsorted : dict):
+    dictionary = {}
+    for line in unsorted:
+        if line[0] == '>':
+            key = line
+            dictionary[key] = ''
+        else:
+            dictionary[key] += line
+
+    return dictionary
+
+def highest_gc(f : dict):
+    dictionary = FASTA_sort(f)
+    highest_gc_content : float = 0.00
+    highest_gc_tag = ''
+    for tag, sequence in dictionary.items():
+        gc = gc_content(sequence)
+        if gc > highest_gc_content:
+            highest_gc_content = gc
+            highest_gc_tag = tag
+
+    print(highest_gc_tag[1:])
+    print(highest_gc_content)
+
+highest_gc(FASTA_file)
 
 
