@@ -72,3 +72,16 @@ def transcribe(sequence):
 
 def better_transcribe(sequence):
     return sequence.upper().translate(str.maketrans('T', 'U'))
+
+def translate_rna(sequence, init_position = 0):
+    codons = []
+    for index in range(init_position, len(sequence), 3):
+        codon = sequence[index:index + 3]
+        codons.append(codon)
+    
+    polypeptide = []
+    for codon in codons:
+        polypeptide.append(RNA_Codons[''.join([base for base in codon])])
+    return polypeptide
+
+print(translate_rna('AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA'))
