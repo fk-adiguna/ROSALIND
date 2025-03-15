@@ -1,8 +1,6 @@
 import random
 import os
-
-NUCLEOTIDES = ['A', 'C', 'G', 'T']
-COMPLEMENT_NUCLEOTIDES = {'A' : 'T', 'T' : 'A', 'C' : 'G', 'G' : 'C'}
+from dna_structures import *
 
 TEST_CASES_PATH = 'test_cases'
 most_recent_file = None
