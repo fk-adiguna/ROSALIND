@@ -34,8 +34,18 @@ def get_most_recent_test_file(path):
             
     return most_recent_file
 
-def read_file(pathway : str):
+def FASTA_sort(unsorted : dict):
+    dictionary = {}
+    for line in unsorted:
+        if line[0] == '>':
+            key = line
+            dictionary[key] = ''
+        else:
+            dictionary[key] += line
 
+    return dictionary
+
+def read_file(pathway : str): 
     with open(pathway, 'r') as file:
         return [line.strip() for line in file.readlines()]
 
@@ -84,11 +94,10 @@ def hamming_distance(s,t):
     return sum(a != b for a,b in itertools.zip_longest(s,t))
 
 def motif(subsequence, sequence):
-    # create a list of subsequences in sequence all with length of the subsequence
-    # check if each element = subsequence
-    # if it is, then append the index to the indexes array
-
     print(*[index + 1 for index in range(len(sequence)) if sequence[index:index + len(subsequence)] == subsequence])
 
-motif('ATTACGAAT', 'TTAAACCATCAACTATTACGACCCCAATTACGACTGCACTATTACGATAAACCATTACGAGCACATTACGAATTACGACCATTACGATCCATTACGAATTACGATAAATTACGAATTACGAATTACGAGTAGATTACGAGGATTACGATCCAATTCAATTACGAATTACGAGATTACGAAGGATTACGAATTACGACCAGGCGCCATGTATTACGAATTACGATTTATTACGACGCATTACGAAGATTACGATTGATTACGACTATTACGAATTACGAAACATTACGATATTATTACGACATTACGAATTACGAATTACGACATTACGACCCTAATTACGACCGATGCATTACGACAAATTACGAGTGATTACGAGATTACGAATTACGAGGCCTATTACGAGCATTACGAGGTAACATTACGAATTTATTACGACAATACATTACGATGATTACGATCGAATTACGAGATTACGAGATTACGAAATATTACGAATTACGAGTCAGACAATTACGAGTCCCAGTAGGATTACGATCTATTACGATACATTACGAATTACGACAGATTACGACTGAAGTACCGCATTACGAATTACGAAATTACGAAGATTACGAATTACGACGCGATTCCATTACGAACGAATTACGACACGTAGTTGATATTACGAATTACGAGAATCCGCAAAGATTACGAATCTGATGGGAATTACGAATTACGACATTACGAAATTACGAATTACGACATTACGATTATTACGAGATTACGAATTACGATCGTCAACGCCGGAAATATTACGACTATTACGAATTACGAATTACGACAGTAATGATTACGAGATTACGACCACCTCTGCCATTACGATGATTACGACCTAATTACGAA')
+
+def mendel(k, m, n):
+    t = k+m+n
+    return (k/t) + (m*k+n*k+n*m)/(t*(t-1)) + 0.75*(m*(m-1))/(t*(t-1))
 

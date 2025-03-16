@@ -2,17 +2,6 @@ from dna_toolkit import *
 
 FASTA_file = read_file('test_data/gc_content.txt')
 
-def FASTA_sort(unsorted : dict):
-    dictionary = {}
-    for line in unsorted:
-        if line[0] == '>':
-            key = line
-            dictionary[key] = ''
-        else:
-            dictionary[key] += line
-
-    return dictionary
-
 def highest_gc(f : dict):
     dictionary = FASTA_sort(f)
     highest_gc_content : float = 0.00
